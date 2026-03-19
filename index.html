@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pen</title>
+  </head>
+  <body>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
+<nav class="navbar">
+  <div class="logo">CA<span class="highlight">$</span>H<span class="highlight">MONEY</span></div>
+  <button id="logoutBtn" class="hidden btn-logout">Déconnexion</button>
+</nav>
+
+<div class="container">
+  
+  <div id="authSection">
+    <div id="loginCard" class="card">
+      <h2>Connexion</h2>
+      <input type="email" id="loginEmail" placeholder="Email">
+      <input type="password" id="loginPass" placeholder="Mot de passe">
+      <button onclick="login()" class="btn-royal">Se connecter</button>
+      <p class="toggle-text">Pas de compte ? <a href="#" onclick="toggleAuth()">S'inscrire</a></p>
+    </div>
+
+    <div id="registerCard" class="card hidden">
+      <h2>Inscription</h2>
+      <input type="text" id="regName" placeholder="Nom complet">
+      <input type="email" id="regEmail" placeholder="Email">
+      <input type="tel" id="regPhone" placeholder="Numéro de téléphone">
+      <input type="password" id="regPass" placeholder="Mot de passe">
+      <button onclick="register()" class="btn-royal">Créer mon compte</button>
+      <p class="toggle-text">Déjà inscrit ? <a href="#" onclick="toggleAuth()">Connexion</a></p>
+    </div>
+  </div>
+
+  <div id="dashboardSection" class="hidden">
+    <div class="card balance-card">
+      <h3>Bonjour, <span id="userNameDisplay">...</span></h3>
+      <div class="balance-amount"><span id="balanceDisplay">0</span> <small>FCFA</small></div>
+      <div class="action-buttons">
+        <a href="https://payliv.shop/pay/plv_d0kjvsgn" target="_blank" class="btn-recharge">Recharger</a>
+        <button id="withdrawBtn" onclick="requestWithdrawal()" disabled class="btn-withdraw">Retirer</button>
+      </div>
+      <p id="withdrawHint" class="hint text-red">Parrainez 2 personnes pour débloquer le retrait.</p>
+    </div>
+
+    <div class="card">
+      <h4>Missions du jour (50 FCFA)</h4>
+      <div class="tasks-list">
+        <button onclick="completeTask(1)" class="task-item">Regarder la vidéo sponsorisée 1</button>
+        <button onclick="completeTask(2)" class="task-item">Visiter le partenaire local</button>
+        <button onclick="completeTask(3)" class="task-item">Partager sur les réseaux</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Votre lien de parrainage</h4>
+      <div class="referral-box" id="referralLink">Génération...</div>
+      <button onclick="shareWhatsApp()" class="btn-whatsapp">Partager sur WhatsApp (Bonus 1100F)</button>
+      <p class="ref-stats">Parrains validés : <span id="refCount">0</span>/2</p>
+    </div>
+  </div>
+
+  <div id="adminSection" class="hidden">
+    <div class="card admin-card">
+      <h2 style="color: #1e40af; margin-bottom:15px;">Panel Admin</h2>
+      <div class="admin-tabs">
+        <button id="tabUsersBtn" onclick="showAdminTab('users')" class="tab-btn active">Utilisateurs</button>
+        <button id="tabWithdrawBtn" onclick="showAdminTab('withdrawals')" class="tab-btn">Retraits</button>
+      </div>
+
+      <div id="adminUsersTab">
+        <table class="history-table">
+          <thead><tr><th>Nom</th><th>Solde</th></tr></thead>
+          <tbody id="adminUserList"></tbody>
+        </table>
+      </div>
+
+      <div id="adminWithdrawTab" class="hidden">
+        <table class="history-table">
+          <thead><tr><th>Montant</th><th>Numéro</th><th>Action</th></tr></thead>
+          <tbody id="adminWithdrawList"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
